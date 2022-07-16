@@ -1,14 +1,19 @@
+import { useState } from 'react';
 import Letter from './Letter'
-import { Box, Flex } from '@chakra-ui/react'
+import LetterModal from './LetterModal';
+import { Box, Flex, useDisclosure } from '@chakra-ui/react'
 
 const letters = [
     {sender: 'james', recipient: 'james', message: 'hi', date: '8383'},
-    {sender: 'james', recipient: 'james', message: 'hi', date: '8383'},
-    {sender: 'james', recipient: 'james', message: 'hi', date: '8383'},
-    {sender: 'james', recipient: 'james', message: 'hi', date: '8383'}
+    {sender: 'james', recipient: 'james', message: 'hi', date: '400'},
+    {sender: 'james', recipient: 'james', message: 'hi', date: '500'},
+    {sender: 'james', recipient: 'james', message: 'hi', date: '313'}
 ];
 
 const LetterBoard = () => {
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [currentLetter, setCurrentLetter] = useState({});
 
     return (
         <Box
@@ -32,9 +37,17 @@ const LetterBoard = () => {
                         recipient={letter.recipient}
                         message={letter.message}
                         date={letter.date}
+                        onOpen={onOpen}
+                        setCurrentLetter={setCurrentLetter}
                         />
                 })}
             </Flex>
+            <LetterModal
+                isOpen={isOpen} 
+                onOpen={onOpen}
+                onClose={onClose}
+                currentLetter={currentLetter}
+            />
         </Box>
     )
 }

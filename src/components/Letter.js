@@ -4,9 +4,23 @@ import { ViewIcon } from '@chakra-ui/icons'
 const Letter = (props) => {
 
     const {
+        date,
         sender,
+        setCurrentLetter,
+        message,
         recipient,
+        onOpen
     } = props;
+
+    const handleOpenModal = () => {
+        onOpen();
+        setCurrentLetter({
+            sender,
+            recipient,
+            message,
+            date
+        })
+    };
 
     return (
         <Box 
@@ -25,7 +39,7 @@ const Letter = (props) => {
                 </Box>
                 <Box pr='25px' pt='15px'>
                     <Tooltip hasArrow label='View letter'>
-                        <ViewIcon w={6} h={6} color='blackAlpha.700' cursor='pointer' />
+                        <ViewIcon w={6} h={6} color='blackAlpha.700' cursor='pointer' onClick={() => handleOpenModal()}/>
                     </Tooltip>
                 </Box>
             </Flex>
