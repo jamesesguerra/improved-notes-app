@@ -56,6 +56,7 @@ const LetterBoard = () => {
                 onOpen={onEditOpen}
                 onClose={onEditClose}
                 currentLetter={currentLetter}
+                setCurrentLetter={setCurrentLetter}
             />
         </Box>
     )

@@ -9,10 +9,12 @@ import {
     Heading,
     Input,
     Text,
-    Textarea
+    Textarea,
+    useToast
 } from '@chakra-ui/react'
 
 const Form = () => {
+    const toast = useToast();
 
     const [letterInfo, setLetterInfo] = useState({
         senderName: '',
@@ -64,6 +66,14 @@ const Form = () => {
                         <Button
                             colorScheme='teal'
                             w='100%'
+                            onClick={() => 
+                                toast({
+                                    title: 'Letter sent.',
+                                    status: 'success',
+                                    duration: 5000,
+                                    isClosable: true,
+                                })
+                            }
                         >
                             Send Letter
                         </Button>
