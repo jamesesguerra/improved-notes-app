@@ -6,8 +6,6 @@ const Letter = (props) => {
     const {
         sender,
         recipient,
-        message,
-        date
     } = props;
 
     return (
