@@ -48,15 +48,15 @@ const Form = () => {
                 </Heading>
                 <Text fontSize='xl' pb='15px'>lorem ipsum dolor sit amet</Text>
                 <form>
-                    <FormControl isRequired py='15px'>
+                    <FormControl py='15px'>
                         <FormLabel htmlFor='sender_name'>Sender's Name</FormLabel>
                         <Input id='sender_name' type='text' onChange={updateLetterInfo} />
                     </FormControl>
-                    <FormControl isRequired py='15px'>
+                    <FormControl py='15px'>
                         <FormLabel htmlFor='recipient_name'>Recipient's Name</FormLabel>
                         <Input id='recipient_name' type='text' onChange={updateLetterInfo} />
                     </FormControl>
-                    <FormControl isRequired py='15px'>
+                    <FormControl py='15px'>
                         <FormLabel htmlFor='message'>Message</FormLabel>
                         <Textarea id='message' minH='200px' onChange={updateLetterInfo} />
                     </FormControl>
@@ -65,7 +65,7 @@ const Form = () => {
                             colorScheme='teal'
                             w='100%'
                         >
-                            Send Message
+                            Send Letter
                         </Button>
                     </Center>
                 </form>

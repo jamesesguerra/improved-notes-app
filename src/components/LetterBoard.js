@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Letter from './Letter'
 import LetterModal from './LetterModal';
+import EditModal from './EditModal';
 import { Box, Flex, useDisclosure } from '@chakra-ui/react'
 
 const letters = [
@@ -12,7 +13,8 @@ const letters = [
 
 const LetterBoard = () => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen: isReadOpen, onOpen: onReadOpen, onClose: onReadClose } = useDisclosure();
+    const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure();
     const [currentLetter, setCurrentLetter] = useState({});
 
     return (
@@ -37,15 +39,22 @@ const LetterBoard = () => {
                         recipient={letter.recipient}
                         message={letter.message}
                         date={letter.date}
-                        onOpen={onOpen}
+                        onOpen={onReadOpen}
                         setCurrentLetter={setCurrentLetter}
                         />
                 })}
             </Flex>
             <LetterModal
-                isOpen={isOpen} 
-                onOpen={onOpen}
-                onClose={onClose}
+                isOpen={isReadOpen} 
+                onOpen={onReadOpen}
+                onEditOpen={onEditOpen}
+                onClose={onReadClose}
+                currentLetter={currentLetter}
+            />
+            <EditModal 
+                isOpen={isEditOpen} 
+                onOpen={onEditOpen}
+                onClose={onEditClose}
                 currentLetter={currentLetter}
             />
         </Box>

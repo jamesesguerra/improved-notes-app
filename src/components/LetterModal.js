@@ -12,15 +12,25 @@ import {
 
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 
-const LetterModal = ({ currentLetter, isOpen, onClose }) => {
+const LetterModal = ({ currentLetter, isOpen, onClose, onEditOpen }) => {
 
-  const handleCloseModal = () => {
+  const handleEdit = () => {
+    onClose();
+    onEditOpen();
+  };
+
+  const handleDelete = () => {
     onClose();
   };
 
   return (
     <>
-        <Modal isOpen={isOpen} onClose={onClose} size={{ base: 'sm', md: 'md'}} isCentered>
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          size={{ base: 'sm', md: 'md'}}
+          scrollBehavior='inside'
+          isCentered>
         <ModalOverlay />
         <ModalContent>
             <ModalHeader></ModalHeader>
@@ -33,10 +43,10 @@ const LetterModal = ({ currentLetter, isOpen, onClose }) => {
               <Text textAlign='right'>{currentLetter.sender}</Text>
             </ModalBody>
             <ModalFooter>
-            <Button leftIcon={<EditIcon />} variant='ghost' mr={3} onClick={handleCloseModal}>
+            <Button leftIcon={<EditIcon />} variant='ghost' mr={3} onClick={handleEdit}>
                 Edit
             </Button>
-            <Button leftIcon={<DeleteIcon />} colorScheme='red'>Delete</Button>
+            <Button leftIcon={<DeleteIcon />} colorScheme='red' onClick={handleDelete}>Delete</Button>
             </ModalFooter>
         </ModalContent>
         </Modal>
