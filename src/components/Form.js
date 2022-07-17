@@ -82,9 +82,9 @@ const Form = ({ letters, setLetters }) => {
                     size={{ base: '4xl', md: '2xl' }}
                     pb='10px'
                 >
-                    letters.io
+                    lettrs.io
                 </Heading>
-                <Text fontSize='xl' pb='15px'>lorem ipsum dolor sit amet</Text>
+                <Text fontSize='xl' pb='15px'>Send a letter to someone :)</Text>
                 <form>
                     <FormControl py='15px'>
                         <FormLabel htmlFor='sender_name'>Sender's Name</FormLabel>
