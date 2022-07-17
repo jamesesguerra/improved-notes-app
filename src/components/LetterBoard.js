@@ -23,7 +23,7 @@ const LetterBoard = ({ letters, setLetters }) => {
             bg='gray.50'
             h='2000px'
             flex='1'
-            pt='50px'
+            py='50px'
             pl={{ md: '350px' }}
             pr={{ md: '20px' }}
             px={{ base: '31px'}}

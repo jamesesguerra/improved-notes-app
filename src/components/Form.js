@@ -52,6 +52,11 @@ const Form = ({ letters, setLetters }) => {
                     duration: 5000,
                     isClosable: true,
                 });
+                setLetterInfo({
+                    senderName: '',
+                    recipientName: '',
+                    message: ''
+                })
             })
         } else {
             toast({
@@ -83,15 +88,15 @@ const Form = ({ letters, setLetters }) => {
                 <form>
                     <FormControl py='15px'>
                         <FormLabel htmlFor='sender_name'>Sender's Name</FormLabel>
-                        <Input id='sender_name' type='text' onChange={updateLetterInfo} />
+                        <Input id='sender_name' type='text' value={letterInfo.senderName} onChange={updateLetterInfo} />
                     </FormControl>
                     <FormControl py='15px'>
                         <FormLabel htmlFor='recipient_name'>Recipient's Name</FormLabel>
-                        <Input id='recipient_name' type='text' onChange={updateLetterInfo} />
+                        <Input id='recipient_name' type='text' value={letterInfo.recipientName} onChange={updateLetterInfo} />
                     </FormControl>
                     <FormControl py='15px'>
                         <FormLabel htmlFor='message'>Message</FormLabel>
-                        <Textarea id='message' minH='200px' onChange={updateLetterInfo} />
+                        <Textarea id='message' minH='200px' value={letterInfo.message} onChange={updateLetterInfo} />
                     </FormControl>
                     <Center>
                         <Button

@@ -12,7 +12,6 @@ import {
   } from '@chakra-ui/react'
 
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
-
 import letterService from '../actions/letters';
 
 const LetterModal = (props) => {
@@ -64,7 +63,7 @@ const LetterModal = (props) => {
               <Text textAlign='right'>{currentLetter.date}</Text>
               <Text pb='20px'>Dear {currentLetter.recipientName},</Text>
               <Text pb='20px'>{currentLetter.message}</Text>
-              <Text pb='10px' textAlign='right'>Sincerely,</Text>
+              <Text pb='10px' textAlign='right'>Yours,</Text>
               <Text textAlign='right'>{currentLetter.senderName}</Text>
             </ModalBody>
             <ModalFooter>
