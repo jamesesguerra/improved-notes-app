@@ -15,28 +15,46 @@ import {
 } from '@chakra-ui/react'
 
 import { CheckIcon } from '@chakra-ui/icons'
+import letterService from '../actions/letters';
 
-const EditModal = ({ isOpen, onClose, currentLetter, setCurrentLetter }) => {
+const EditModal = (props) => {
+
+    const {
+        isOpen,
+        onClose,
+        currentLetter,
+        setCurrentLetter,
+        letters,
+        setLetters
+    } = props
+
     const toast = useToast();
 
     const updateLetterInfo = (e) => {
         if (e.target.id === 'sender_name') {
-            setCurrentLetter({ ...currentLetter, sender: e.target.value });
+            setCurrentLetter({ ...currentLetter, senderName: e.target.value });
         } else if (e.target.id === 'recipient_name') {
-            setCurrentLetter({ ...currentLetter, recipient: e.target.value });
+            setCurrentLetter({ ...currentLetter, recipientName: e.target.value });
         } else {
             setCurrentLetter({ ...currentLetter, message: e.target.value });
         }
     };
 
     const handleSaveLetter = () => {
-        onClose();
-        toast({
-            title: 'Succesfully edited letter.',
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-        })
+        letterService
+            .update(currentLetter.id, currentLetter)
+            .then((updatedLetter) => {
+                setLetters(letters.map(letter => letter.id !== currentLetter.id ? letter : updatedLetter));
+            })
+            .then(() => {
+                onClose();
+                toast({
+                    title: 'Letter edited.',
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                })
+            })
     }
 
     return (
@@ -56,11 +74,11 @@ const EditModal = ({ isOpen, onClose, currentLetter, setCurrentLetter }) => {
             <form>
                 <FormControl py='15px'>
                     <FormLabel htmlFor='sender_name'>Sender's Name</FormLabel>
-                    <Input id='sender_name' type='text' value={currentLetter.sender} onChange={updateLetterInfo} />
+                    <Input id='sender_name' type='text' value={currentLetter.senderName} onChange={updateLetterInfo} />
                 </FormControl>
                 <FormControl py='15px'>
                     <FormLabel htmlFor='recipient_name'>Recipient's Name</FormLabel>
-                    <Input id='recipient_name' type='text' value={currentLetter.recipient} onChange={updateLetterInfo} />
+                    <Input id='recipient_name' type='text' value={currentLetter.recipientName} onChange={updateLetterInfo} />
                 </FormControl>
                 <FormControl py='15px'>
                     <FormLabel htmlFor='message'>Message</FormLabel>

@@ -4,21 +4,23 @@ import { ViewIcon } from '@chakra-ui/icons'
 const Letter = (props) => {
 
     const {
+        id,
         date,
-        sender,
+        senderName,
         setCurrentLetter,
         message,
-        recipient,
+        recipientName,
         onOpen
     } = props;
 
     const handleOpenModal = () => {
         onOpen();
         setCurrentLetter({
-            sender,
-            recipient,
+            senderName,
+            recipientName,
             message,
-            date
+            date,
+            id
         })
     };
 
@@ -28,14 +30,14 @@ const Letter = (props) => {
             rounded='xl'
             bgColor='white'
             flexBasis='350px'
-            flexGrow='1'
+            flexGrow={{ base: '1', md: '0' }}
             h='230px'
             position='relative'
         >   
             <Flex justifyContent='space-between'>
                 <Box p='15px'>
-                    <Text>TO: {sender.toUpperCase()}</Text>
-                    <Text>FROM: {recipient.toUpperCase()}</Text>
+                    <Text>TO: {senderName.toUpperCase()}</Text>
+                    <Text>FROM: {recipientName.toUpperCase()}</Text>
                 </Box>
                 <Box pr='25px' pt='15px'>
                     <Tooltip hasArrow label='View letter'>

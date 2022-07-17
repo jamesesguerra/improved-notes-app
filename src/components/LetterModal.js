@@ -7,12 +7,26 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    Text
+    Text,
+    useToast
   } from '@chakra-ui/react'
 
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 
-const LetterModal = ({ currentLetter, isOpen, onClose, onEditOpen }) => {
+import letterService from '../actions/letters';
+
+const LetterModal = (props) => {
+
+  const {
+    currentLetter,
+    isOpen,
+    onClose,
+    onEditOpen,
+    letters,
+    setLetters
+  } = props;
+
+  const toast = useToast();
 
   const handleEdit = () => {
     onClose();
@@ -20,7 +34,18 @@ const LetterModal = ({ currentLetter, isOpen, onClose, onEditOpen }) => {
   };
 
   const handleDelete = () => {
-    onClose();
+    letterService
+    .remove(currentLetter.id)
+    .then(() => {
+      setLetters(letters.filter(letter => letter.id !== currentLetter.id));
+      onClose();
+      toast({
+        title: 'Letter deleted.',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+    })
   };
 
   return (
@@ -37,10 +62,10 @@ const LetterModal = ({ currentLetter, isOpen, onClose, onEditOpen }) => {
             <ModalCloseButton />
             <ModalBody py='20px'>
               <Text textAlign='right'>{currentLetter.date}</Text>
-              <Text pb='20px'>Dear {currentLetter.recipient},</Text>
+              <Text pb='20px'>Dear {currentLetter.recipientName},</Text>
               <Text pb='20px'>{currentLetter.message}</Text>
               <Text pb='10px' textAlign='right'>Sincerely,</Text>
-              <Text textAlign='right'>{currentLetter.sender}</Text>
+              <Text textAlign='right'>{currentLetter.senderName}</Text>
             </ModalBody>
             <ModalFooter>
             <Button leftIcon={<EditIcon />} variant='ghost' mr={3} onClick={handleEdit}>
