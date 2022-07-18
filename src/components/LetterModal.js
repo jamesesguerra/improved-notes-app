@@ -59,7 +59,7 @@ const LetterModal = (props) => {
         <ModalContent>
             <ModalHeader></ModalHeader>
             <ModalCloseButton />
-            <ModalBody py='20px'>
+            <ModalBody py='20px' bg='gray.50' mt='15px' mx='20px' rounded='xl'>
               <Text textAlign='right'>{currentLetter.date}</Text>
               <Text pb='20px'>Dear {currentLetter.recipientName},</Text>
               <Text pb='20px'>{currentLetter.message}</Text>
