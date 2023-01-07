@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'https://immense-depths-71989.herokuapp.com/letters';
+const BASE_URL = 'https://summer-dawn-3836.fly.dev/letters';
 
 const getAll = () => {
     const request = axios.get(BASE_URL);
