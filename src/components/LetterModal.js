@@ -67,10 +67,14 @@ const LetterModal = (props) => {
               <Text textAlign='right'>{currentLetter.senderName}</Text>
             </ModalBody>
             <ModalFooter>
-            <Button leftIcon={<EditIcon />} variant='ghost' mr={3} onClick={handleEdit}>
-                Edit
-            </Button>
-            <Button leftIcon={<DeleteIcon />} colorScheme='red' onClick={handleDelete}>Delete</Button>
+              { currentLetter.id !== '689b405c76a074aa980d0664' && (
+                <>
+                  <Button leftIcon={<EditIcon />} variant='ghost' mr={3} onClick={handleEdit}>
+                      Edit
+                  </Button>
+                  <Button leftIcon={<DeleteIcon />} colorScheme='red' onClick={handleDelete}>Delete</Button>
+                </>
+              )}
             </ModalFooter>
         </ModalContent>
         </Modal>
