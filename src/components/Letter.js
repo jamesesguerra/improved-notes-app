@@ -36,8 +36,8 @@ const Letter = (props) => {
         >   
             <Flex justifyContent='space-between'>
                 <Box p='15px'>
-                    <Text>TO: {senderName.toUpperCase()}</Text>
-                    <Text>FROM: {recipientName.toUpperCase()}</Text>
+                    <Text>TO: {recipientName.toUpperCase()}</Text>
+                    <Text>FROM: {senderName.toUpperCase()}</Text>
                 </Box>
                 <Box pr='25px' pt='15px'>
                     <Tooltip hasArrow label='View letter'>
